@@ -8,7 +8,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "requests")
-public class CreditRequest {
+public class Request {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,7 +67,7 @@ public class CreditRequest {
 
     private boolean hasExistingLoans;
 
-    public CreditRequest(Long id, String project, String status, double amount, int duration, double monthlyPayment, String email, String phone, String title, String lastName, String firstName, String idNumber, Date dateOfBirth, Date employmentStartDate, double monthlyIncome, boolean hasExistingLoans) {
+    public Request(Long id, String project, String status, double amount, int duration, double monthlyPayment, String email, String phone, String title, String lastName, String firstName, String idNumber, Date dateOfBirth, Date employmentStartDate, double monthlyIncome, boolean hasExistingLoans) {
         this.id = id;
         this.project = project;
         this.status = status;
@@ -86,7 +86,7 @@ public class CreditRequest {
         this.hasExistingLoans = hasExistingLoans;
     }
 
-    public CreditRequest() {
+    public Request() {
     }
 
     public Long getId() {
@@ -97,123 +97,115 @@ public class CreditRequest {
         this.id = id;
     }
 
-    public @NotNull @NotBlank @Size(max = 100) String getProject() {
+    public String getProject() {
         return project;
     }
 
-    public void setProject(@NotNull @NotBlank @Size(max = 100) String project) {
+    public void setProject(String project) {
         this.project = project;
     }
 
-    public @NotNull @NotBlank String getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(@NotNull @NotBlank String status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
-    @NotNull
-    @DecimalMin("0.0")
     public double getAmount() {
         return amount;
     }
 
-    public void setAmount(@NotNull @DecimalMin("0.0") double amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
     }
 
-    @NotNull
-    @Min(1)
     public int getDuration() {
         return duration;
     }
 
-    public void setDuration(@NotNull @Min(1) int duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
-    @NotNull
-    @DecimalMin("0.0")
     public double getMonthlyPayment() {
         return monthlyPayment;
     }
 
-    public void setMonthlyPayment(@NotNull @DecimalMin("0.0") double monthlyPayment) {
+    public void setMonthlyPayment(double monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
 
-    public @Email String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(@Email String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public @NotNull @Pattern(regexp = "\\d{10}") String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(@NotNull @Pattern(regexp = "\\d{10}") String phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
-    public @NotNull @Size(max = 100) String getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(@NotNull @Size(max = 100) String title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public @NotNull @Size(max = 50) String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(@NotNull @Size(max = 50) String lastName) {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public @NotNull @Size(max = 50) String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(@NotNull @Size(max = 50) String firstName) {
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
-    public @NotNull @Size(max = 20) String getIdNumber() {
+    public String getIdNumber() {
         return idNumber;
     }
 
-    public void setIdNumber(@NotNull @Size(max = 20) String idNumber) {
+    public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
     }
 
-    public @NotNull @Past Date getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(@NotNull @Past Date dateOfBirth) {
+    public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public @NotNull Date getEmploymentStartDate() {
+    public Date getEmploymentStartDate() {
         return employmentStartDate;
     }
 
-    public void setEmploymentStartDate(@NotNull Date employmentStartDate) {
+    public void setEmploymentStartDate(Date employmentStartDate) {
         this.employmentStartDate = employmentStartDate;
     }
 
-    @NotNull
-    @DecimalMin("0.0")
     public double getMonthlyIncome() {
         return monthlyIncome;
     }
 
-    public void setMonthlyIncome(@NotNull @DecimalMin("0.0") double monthlyIncome) {
+    public void setMonthlyIncome(double monthlyIncome) {
         this.monthlyIncome = monthlyIncome;
     }
 
@@ -224,4 +216,5 @@ public class CreditRequest {
     public void setHasExistingLoans(boolean hasExistingLoans) {
         this.hasExistingLoans = hasExistingLoans;
     }
+
 }
