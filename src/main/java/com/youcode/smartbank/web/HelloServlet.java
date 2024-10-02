@@ -1,4 +1,4 @@
-package com.youcode.smartbank;
+package com.youcode.smartbank.web;
 
 import java.io.*;
 import jakarta.servlet.http.*;
