@@ -3,6 +3,7 @@ package com.youcode.smartbank.web;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 
 import com.youcode.smartbank.entities.Request;
@@ -24,7 +25,7 @@ public class HelloServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Parsing des paramètres du formulaire
+
         String project = request.getParameter("project");
         String status = request.getParameter("status");
         double amount = Double.parseDouble(request.getParameter("amount"));
@@ -38,17 +39,11 @@ public class HelloServlet extends HttpServlet {
         String idNumber = request.getParameter("idNumber");
 
         // Parsing des dates avec SimpleDateFormat
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateOfBirth = null;
-        Date employmentStartDate = null;
-        try {
-            dateOfBirth = sdf.parse(request.getParameter("dateOfBirth"));
-            employmentStartDate = sdf.parse(request.getParameter("employmentStartDate"));
-        } catch (ParseException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Format de date invalide.");
-            return;
-        }
+       // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate dateOfBirth = null;
+        LocalDate employmentStartDate = null;
+        dateOfBirth = LocalDate.parse(request.getParameter("dateOfBirth"));
+        employmentStartDate = LocalDate.parse(request.getParameter("employmentStartDate"));
 
         double monthlyIncome = Double.parseDouble(request.getParameter("monthlyIncome"));
         boolean hasExistingLoans = Boolean.parseBoolean(request.getParameter("hasExistingLoans"));

@@ -3,6 +3,7 @@ package com.youcode.smartbank.entities;
 import jakarta.validation.constraints.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 
@@ -55,11 +56,11 @@ public class Request {
     @NotNull
     @Past
     @Temporal(TemporalType.DATE)
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @NotNull
     @Temporal(TemporalType.DATE)
-    private Date employmentStartDate;
+    private LocalDate employmentStartDate;
 
     @NotNull
     @DecimalMin("0.0")
@@ -67,7 +68,7 @@ public class Request {
 
     private boolean hasExistingLoans;
 
-    public Request(Long id, String project, String status, double amount, int duration, double monthlyPayment, String email, String phone, String title, String lastName, String firstName, String idNumber, Date dateOfBirth, Date employmentStartDate, double monthlyIncome, boolean hasExistingLoans) {
+    public Request(Long id, String project, String status, double amount, int duration, double monthlyPayment, String email, String phone, String title, String lastName, String firstName, String idNumber, LocalDate dateOfBirth, LocalDate employmentStartDate, double monthlyIncome, boolean hasExistingLoans) {
         this.id = id;
         this.project = project;
         this.status = status;
@@ -185,19 +186,19 @@ public class Request {
         this.idNumber = idNumber;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Date getEmploymentStartDate() {
+    public LocalDate getEmploymentStartDate() {
         return employmentStartDate;
     }
 
-    public void setEmploymentStartDate(Date employmentStartDate) {
+    public void setEmploymentStartDate(LocalDate employmentStartDate) {
         this.employmentStartDate = employmentStartDate;
     }
 
