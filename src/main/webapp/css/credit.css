@@ -1,0 +1,270 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    margin-left: 260px;
+    margin-right: 260px;
+}
+
+.progress-bar {
+    display: flex;
+}
+.progress-bar .step3 {
+    margin-left: 1px;
+    height: 85px;
+}
+.progress-bar .step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    border: #f0f0f0;
+    height: 60px;
+}
+.progress-bar .step .number {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: #ffd700;
+    color: #30435C;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.progress-bar .step .text {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+}
+.progress-bar .step.completed {
+    background-color: #00b5ad;
+    color: #fff;
+    font-weight: bold;
+    padding-left: 2px;
+    margin-left: 1px;
+}
+.progress-bar .step.completed .number {
+    background-color: #00b5ad;
+    font-weight: bold;
+    color: #fff;
+}
+.progress-bar .step.active {
+    background-color: #ffd700;
+}
+.progress-bar .step.active::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #ffd700;
+}
+
+.credit-form {
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 30px;
+}
+
+.credit-form-bar {
+    gap: 2px;
+    background-color: #fff;
+    margin-top: 50px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.form-group input[type=text],
+.form-group input[type=number],
+.form-group input[type=date] {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    outline: none;
+    background-color: transparent;
+}
+.form-group input[type=text]:focus + label, .form-group input[type=text]:valid + label,
+.form-group input[type=number]:focus + label,
+.form-group input[type=number]:valid + label,
+.form-group input[type=date]:focus + label,
+.form-group input[type=date]:valid + label {
+    top: -8px;
+    font-size: 12px;
+    color: #30435C;
+}
+.form-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #999;
+    transition: 0.3s ease all;
+    pointer-events: none;
+}
+
+.form-group.radio-group input[type=radio] {
+    position: absolute;
+    opacity: 0;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.form-group.radio-group input[type=radio] + label {
+    cursor: pointer;
+    padding-left: 30px;
+    position: relative;
+}
+.form-group.radio-group input[type=radio] + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border: 2px solid #00b5ad;
+    border-radius: 50%;
+    background-color: white;
+}
+.form-group.radio-group input[type=radio]:checked + label:after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #00b5ad;
+    border-radius: 50%;
+}
+.form-group.radio-group .label {
+    color: #30435C;
+    font-size: 14px;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.options .input-radio {
+    display: flex;
+    align-items: center;
+}
+.options .input-radio label {
+    color: black;
+    font-weight: 100;
+    color: #30435C;
+    font-size: 0.875rem;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.checkbox-group input[type=checkbox] {
+    width: 18px;
+    height: 18px;
+}
+.checkbox-group label {
+    position: static;
+    font-size: 14px;
+    color: #333;
+}
+.checkbox-group a {
+    color: #00b5ad;
+}
+
+.button-group {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.submit-button,
+.secondary-button {
+    flex: 1;
+    padding: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    background-color: #fff;
+    box-shadow: #f5f5f5;
+}
+
+.submit-button {
+    background-color: #00b5ad;
+    color: #fff;
+}
+
+.secondary-button {
+    background-color: #00b5ad;
+    color: #fff;
+}
+
+.credit-summary {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 40%;
+    height: 60%;
+}
+.credit-summary h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ffd700;
+    padding-bottom: 10px;
+}
+.credit-summary section {
+    margin-bottom: 20px;
+}
+.credit-summary section h3 {
+    color: #333;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+.credit-summary .info-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+.credit-summary .info-group span:first-child {
+    color: #333;
+}
+.credit-summary .highlight {
+    color: #00b5ad;
+    font-weight: bold;
+}

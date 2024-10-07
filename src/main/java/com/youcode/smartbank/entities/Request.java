@@ -3,6 +3,7 @@ package com.youcode.smartbank.entities;
 import jakarta.validation.constraints.*;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -30,7 +31,7 @@ public class Request {
 
     @NotNull
     @DecimalMin("0.0")
-    private double monthlyPayment;
+    private BigDecimal monthlyPayment;
 
     @Email
     private String email;
@@ -51,7 +52,7 @@ public class Request {
 
     @NotNull
     @Size(max = 20)
-    private String idNumber;
+    private String cin;
 
     @NotNull
     @Past
@@ -68,7 +69,7 @@ public class Request {
 
     private boolean hasExistingLoans;
 
-    public Request(Long id, String project, String status, double amount, int duration, double monthlyPayment, String email, String phone, String title, String lastName, String firstName, String idNumber, LocalDate dateOfBirth, LocalDate employmentStartDate, double monthlyIncome, boolean hasExistingLoans) {
+    public Request(Long id, String project, String status, double amount, int duration, BigDecimal monthlyPayment, String email, String phone, String title, String lastName, String firstName, String cin, LocalDate dateOfBirth, LocalDate employmentStartDate, double monthlyIncome, boolean hasExistingLoans) {
         this.id = id;
         this.project = project;
         this.status = status;
@@ -80,7 +81,7 @@ public class Request {
         this.title = title;
         this.lastName = lastName;
         this.firstName = firstName;
-        this.idNumber = idNumber;
+        this.cin = cin;
         this.dateOfBirth = dateOfBirth;
         this.employmentStartDate = employmentStartDate;
         this.monthlyIncome = monthlyIncome;
@@ -130,11 +131,11 @@ public class Request {
         this.duration = duration;
     }
 
-    public double getMonthlyPayment() {
+    public BigDecimal getMonthlyPayment() {
         return monthlyPayment;
     }
 
-    public void setMonthlyPayment(double monthlyPayment) {
+    public void setMonthlyPayment(BigDecimal monthlyPayment) {
         this.monthlyPayment = monthlyPayment;
     }
 
@@ -178,12 +179,12 @@ public class Request {
         this.firstName = firstName;
     }
 
-    public String getIdNumber() {
-        return idNumber;
+    public String getCin() {
+        return cin;
     }
 
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
     public LocalDate getDateOfBirth() {

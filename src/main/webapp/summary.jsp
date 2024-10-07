@@ -1,11 +1,5 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: SOUMIA
-  Date: 04/10/2024
-  Time: 12:54
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -31,28 +25,55 @@
         </div>
     </div>
 
-    <form>
+    <form action="${pageContext.request.contextPath}/secondServlet" method="post" id="contactForm">
+        <input type="hidden" name="formType" value="form2">
         <div class="form-group">
             <input type="email" id="email" name="email" required>
             <label for="email">Email*</label>
         </div>
         <div class="form-group">
-            <input type="tel" id="telephone" name="telephone" required>
-            <label for="telephone">Téléphone mobile*</label>
+            <input type="tel" id="phone" name="phone" required>
+            <label for="phone">Téléphone mobile*</label>
         </div>
         <div class="recaptcha">
             <div class="g-recaptcha" data-sitekey="your_site_key_here"></div>
         </div>
         <div class="div-button">
-            <button class="button">
+            <button class="button" type="submit" name="submit">
                 <span class="main-text">Continuer</span>
                 <span class="sub-text">Sans engagement</span>
             </button>
         </div>
-
-
     </form>
+
 </div>
+<h1>Résumé des Données</h1>
+
+<div class=" card w-20">
+    <p class="titre-center mon color-four">Mon récapitulatif</p>
+    <p class="color-four bg1 ">Mon projet</p>
+    <p class="color-first pret"><%= session.getAttribute("projectType") %></p>
+    <p class="color-four bg1 ">Détails de mon crédit</p>
+    <div class="data">
+        <p class="color-four fs2">Vous êtes:</p>
+        <p class=" color-first fs2 fw"><%= session.getAttribute("status") %></p>
+    </div>
+    <div class="data">
+        <p class="color-four fs2">Montant:</p>
+        <p class=" color-first fs2 fw"><%= session.getAttribute("amount") %> DH</p>
+    </div>
+    <div class="data">
+        <p class="color-four fs2">Durée:</p>
+        <p class=" color-first fs2 fw"><%= session.getAttribute("duration") %> mois</p>
+    </div>
+    <div class="data">
+        <p class="color-four fs2">Mensualité:</p>
+        <p class=" color-first fs2 fw"><%= session.getAttribute("monthly")%> DH</p>
+    </div>
+</div>
+</div>
+</div>
+
 <div class="summary" id="summary" >
     <h2>Détails de mon crédit</h2>
     <p id="projectSummary"></p>
@@ -62,37 +83,7 @@
     <p id="monthlySummary"></p>
     <p id="feesSummary"></p>
 </div>
-<script>
-    // Récupérer les informations stockées dans localStorage
-    const loanDetails = JSON.parse(localStorage.getItem('loanDetails'));
-
-    // Si les informations existent, les afficher dans la page
-    if (loanDetails) {
-        document.getElementById('projectSummary').innerText = `Mon projet : ${loanDetails.project}`;
-        document.getElementById('amountSummary').innerText = `Montant : ${loanDetails.amount} DH`;
-        document.getElementById('durationSummary').innerText = `Durée : ${loanDetails.duration} mois`;
-    } else {
-        document.getElementById('projectSummary').innerText = "Aucun détail de crédit trouvé.";
-    }
-
-    // Sauvegarder les coordonnées dans localStorage à la soumission du second formulaire
-    document.getElementById('contactForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-
-        const contactDetails = {
-            email,
-            phone
-        };
-
-        // Stocker les coordonnées dans localStorage
-        localStorage.setItem('contactDetails', JSON.stringify(contactDetails));
-
-        alert('Coordonnées soumises avec succès !');
-    });
-</script>
+<script src="js/summary.js"></script>
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>

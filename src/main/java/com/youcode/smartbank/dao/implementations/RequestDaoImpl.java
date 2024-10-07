@@ -11,16 +11,16 @@ import java.util.List;
 public class RequestDaoImpl implements RequestDaoI {
     @Override
     public void save(Request request) {
-        EntityManager em = EntityManagerProvider.getEntityManagerFactory().createEntityManager();
-        EntityTransaction tx = em.getTransaction();
+        EntityManager entityManager = EntityManagerProvider.createEntityManager();
+        EntityTransaction tx = entityManager.getTransaction();
         try{
             tx.begin();
-            em.persist(request); // stores the request
+            entityManager.persist(request); // stores the request
             tx.commit(); //valide the operation
         }catch(Exception e){
             if(tx.isActive()) tx.rollback();
         }finally{
-            em.close();
+            entityManager.close();
         }
 
     }
