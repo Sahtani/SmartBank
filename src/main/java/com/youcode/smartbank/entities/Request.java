@@ -1,10 +1,10 @@
 package com.youcode.smartbank.entities;
 
 import jakarta.validation.constraints.*;
-
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+
 import java.util.Date;
 
 
@@ -50,7 +50,7 @@ public class Request {
     @Size(max = 50)
     private String firstName;
 
-    @NotNull
+
     @Size(max = 20)
     private String cin;
 

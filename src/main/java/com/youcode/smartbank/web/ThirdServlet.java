@@ -24,7 +24,7 @@ public class ThirdServlet extends HttpServlet {
 
         String projectType = (String) session.getAttribute("projectType");
         String position = (String) session.getAttribute("status");
-        double amount = (double) session.getAttribute("amount");
+        float amount = (float) session.getAttribute("amount");
         int durationInMonths = (Integer) session.getAttribute("duration");
         BigDecimal monthlyPayment = (BigDecimal) session.getAttribute("monthly");
         String email = (String) session.getAttribute("email");
@@ -68,7 +68,7 @@ public class ThirdServlet extends HttpServlet {
         try {
             // Enregistrement de la demande
             requestDao.save(newRequest);
-            response.sendRedirect("succes.jsp");
+
             request.setAttribute("successMessage", "Votre demande a été soumise avec succès !");
 
         } catch (Exception e) {
@@ -76,7 +76,6 @@ public class ThirdServlet extends HttpServlet {
             request.setAttribute("errorMessage", "Une erreur est survenue lors de la soumission de votre demande.");
         }
 
-        // Rediriger vers la page de confirmation ou d'affichage des messages
-        request.getRequestDispatcher("credit.jsp").forward(request, response);
+
     }
 }

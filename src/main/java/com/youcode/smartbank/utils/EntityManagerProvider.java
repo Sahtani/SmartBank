@@ -6,26 +6,29 @@ import jakarta.persistence.Persistence;
 
 public class EntityManagerProvider {
 
-    private static EntityManagerFactory entityManagerFactory;
+    private static EntityManagerFactory emf = null;
+    private static EntityManager em = null;
 
     private EntityManagerProvider() {
-
     }
 
-    public static synchronized EntityManagerFactory getEntityManagerFactory() {
-        if (entityManagerFactory == null) {
-            entityManagerFactory = Persistence.createEntityManagerFactory("SmartBank");
+    public static EntityManager getEntityManager() {
+        if (em == null) {
+            if (emf == null) {
+                emf = Persistence.createEntityManagerFactory("SmartBank");
+            }
+            em = emf.createEntityManager();
         }
-        return entityManagerFactory;
+        return em;
     }
 
-    public static EntityManager createEntityManager() {
-        return getEntityManagerFactory().createEntityManager();
-    }
-
-    public static void closeEntityManagerFactory() {
-        if (entityManagerFactory != null && entityManagerFactory.isOpen()) {
-            entityManagerFactory.close();
+    public static void closeEntityManager() {
+        if (em != null && em.isOpen()) {
+            em.close();
+        }
+        if (emf != null && emf.isOpen()) {
+            emf.close();
         }
     }
+
 }
