@@ -13,17 +13,24 @@ public class RequestDaoImpl implements RequestDaoI {
     public void save(Request request) {
         EntityManager em = EntityManagerProvider.getEntityManager();
         EntityTransaction transaction = em.getTransaction();
-        try{
-            transaction.begin();
-            em.persist(request); // stores the request
-            transaction.commit(); //valide the operation
-        }catch(Exception e){
-            if(transaction.isActive()) transaction.rollback();
-        }finally{
-            em.close();
-        }
 
+        try {
+            transaction.begin();
+            em.persist(request);
+            em.flush();
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction.isActive()) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            if (em.isOpen()) {
+                em.close();
+            }
+        }
     }
+
 
     @Override
     public void update(Request request) {

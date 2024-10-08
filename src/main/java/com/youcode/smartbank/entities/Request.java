@@ -24,7 +24,7 @@ public class Request {
     private String status;
     @NotNull
     @DecimalMin("0.0")
-    private double amount;
+    private Double amount;
     @NotNull
     @Min(1)
     private int duration;
@@ -65,7 +65,7 @@ public class Request {
 
     @NotNull
     @DecimalMin("0.0")
-    private double monthlyIncome;
+    private Double monthlyIncome;
 
     private boolean hasExistingLoans;
 

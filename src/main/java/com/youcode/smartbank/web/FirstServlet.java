@@ -15,8 +15,8 @@ public class FirstServlet extends HttpServlet {
         HttpSession session = request.getSession();
         String projectType = request.getParameter("project");
         String position = request.getParameter("status");
-        Double amountObj = (Double) session.getAttribute("amount");
-        float amount = (amountObj != null) ? amountObj.floatValue() : 0.0f;
+        String amount = request.getParameter("amount");
+     //   float amount = (amountObj != null) ? amountObj.floatValue() : 0.0f;
 
         int durationsInMonths = Integer.parseInt(request.getParameter("duration"));
         BigDecimal monthlyIncome = new BigDecimal(request.getParameter("monthly"));

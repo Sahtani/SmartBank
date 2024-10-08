@@ -3,13 +3,14 @@ package com.youcode.smartbank.web;
 
 import com.youcode.smartbank.dao.implementations.RequestDaoImpl;
 import com.youcode.smartbank.entities.Request;
+import com.youcode.smartbank.service.interfaces.RequestServiceI;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
+import jakarta.inject.Inject;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -18,15 +19,22 @@ import java.time.format.DateTimeFormatter;
 @WebServlet("/thirdServlet")
 public class ThirdServlet extends HttpServlet {
 
+    @Inject
+    private RequestServiceI requestService;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("ThirdServlet doPost called");
+
         HttpSession session = request.getSession();
 
         String projectType = (String) session.getAttribute("projectType");
         String position = (String) session.getAttribute("status");
-        float amount = (float) session.getAttribute("amount");
+        String amountStr = (String) session.getAttribute("amount");
+        Double amount = Double.parseDouble(amountStr);
+
         int durationInMonths = (Integer) session.getAttribute("duration");
         BigDecimal monthlyPayment = (BigDecimal) session.getAttribute("monthly");
+
+
         String email = (String) session.getAttribute("email");
         String phone = (String) session.getAttribute("phone");
 
@@ -41,7 +49,9 @@ public class ThirdServlet extends HttpServlet {
         String startEmploymentDateStr = request.getParameter("date_embauche");
         LocalDate startEmployementDate = LocalDate.parse(startEmploymentDateStr, formatter);
         String monthlyPaymentStr = request.getParameter("revenus");
-        BigDecimal monthlyIncome = new BigDecimal(monthlyPaymentStr);
+        Double monthlyIncome = Double.parseDouble(monthlyPaymentStr);
+
+
         String hasActivateCreditsStr = request.getParameter("credit_en_cours");
         boolean hasActivateCredits = Boolean.parseBoolean(hasActivateCreditsStr);
 
@@ -59,15 +69,14 @@ public class ThirdServlet extends HttpServlet {
         newRequest.setCin(cin);
         newRequest.setDateOfBirth(birthDate);
         newRequest.setEmploymentStartDate(startEmployementDate);
-        newRequest.setMonthlyPayment(monthlyIncome);
+        newRequest.setMonthlyIncome(monthlyIncome);
         newRequest.setHasExistingLoans(hasActivateCredits);
 
 
-        RequestDaoImpl requestDao = new RequestDaoImpl();
 
         try {
-            // Enregistrement de la demande
-            requestDao.save(newRequest);
+            System.out.println("hi soumia ");
+            requestService.save(newRequest);
 
             request.setAttribute("successMessage", "Votre demande a été soumise avec succès !");
 
