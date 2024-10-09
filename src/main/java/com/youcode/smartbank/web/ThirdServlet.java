@@ -78,7 +78,7 @@ public class ThirdServlet extends HttpServlet {
         try {
             System.out.println("hi soumia ");
             requestService.save(newRequest);
-            response.sendRedirect("displayRequests.jsp");
+            response.sendRedirect("displayRequests");
             request.setAttribute("successMessage", "Votre demande a été soumise avec succès !");
 
         } catch (Exception e) {

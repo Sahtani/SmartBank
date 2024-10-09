@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -15,6 +17,10 @@ public class Request {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @OneToMany(mappedBy = "requeste", cascade = CascadeType.ALL)
+    private Set<RequestStatus> requestStatuses = new HashSet<>();
+
     @NotNull
     @NotBlank
     @Size(max = 100)
@@ -97,6 +103,14 @@ public class Request {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<RequestStatus> getRequestStatuses() {
+        return requestStatuses;
+    }
+
+    public void setRequestStatuses(Set<RequestStatus> requestStatuses) {
+        this.requestStatuses = requestStatuses;
     }
 
     public String getProject() {

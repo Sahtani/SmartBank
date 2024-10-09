@@ -48,7 +48,7 @@ public class RequestServiceImpl implements RequestServiceI {
 
     @Override
     public List<Request> getAll() {
-
+        System.out.println("RequestServiceImpl.getAll() called"); // Log simple
         return requestDao.getAll();
     }
 
