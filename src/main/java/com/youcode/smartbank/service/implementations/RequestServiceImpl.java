@@ -1,6 +1,7 @@
 package com.youcode.smartbank.service.implementations;
 
 import com.youcode.smartbank.dao.implementations.RequestDaoImpl;
+import com.youcode.smartbank.dao.interfaces.RequestDao;
 import com.youcode.smartbank.entities.Request;
 import com.youcode.smartbank.service.interfaces.RequestServiceI;
 import jakarta.inject.Inject;
@@ -15,7 +16,7 @@ import java.util.Set;
 @ApplicationScoped
 public class RequestServiceImpl implements RequestServiceI {
     @Inject
-    private RequestDaoImpl requestDao;
+    private RequestDao requestDao;
 
     private final Validator validator;
 
@@ -48,8 +49,8 @@ public class RequestServiceImpl implements RequestServiceI {
 
     @Override
     public List<Request> getAll() {
-        System.out.println("RequestServiceImpl.getAll() called"); // Log simple
-        return requestDao.getAll();
+        System.out.println("RequestServiceImpl.getAll() called");
+        return requestDao.findAll();
     }
 
     private void validateRequest(Request request) {
