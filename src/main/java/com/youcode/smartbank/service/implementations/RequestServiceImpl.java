@@ -48,7 +48,8 @@ public class RequestServiceImpl implements RequestServiceI {
 
     @Override
     public List<Request> getAll() {
-        return List.of();
+
+        return requestDao.getAll();
     }
 
     private void validateRequest(Request request) {

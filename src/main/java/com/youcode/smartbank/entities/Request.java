@@ -24,7 +24,7 @@ public class Request {
     private String status;
     @NotNull
     @DecimalMin("0.0")
-    private Double amount;
+    private double amount;
     @NotNull
     @Min(1)
     private int duration;
@@ -219,4 +219,25 @@ public class Request {
         this.hasExistingLoans = hasExistingLoans;
     }
 
+    @Override
+    public String toString() {
+        return "Request{" +
+                "id=" + id +
+                ", project='" + project + '\'' +
+                ", status='" + status + '\'' +
+                ", amount=" + amount +
+                ", duration=" + duration +
+                ", monthlyPayment=" + monthlyPayment +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", title='" + title + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", cin='" + cin + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", employmentStartDate=" + employmentStartDate +
+                ", monthlyIncome=" + monthlyIncome +
+                ", hasExistingLoans=" + hasExistingLoans +
+                '}';
+    }
 }

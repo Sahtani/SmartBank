@@ -29,7 +29,8 @@ public class ThirdServlet extends HttpServlet {
         String projectType = (String) session.getAttribute("projectType");
         String position = (String) session.getAttribute("status");
         String amountStr = (String) session.getAttribute("amount");
-        Double amount = Double.parseDouble(amountStr);
+        double amount = Double.parseDouble(amountStr);
+
 
         int durationInMonths = (Integer) session.getAttribute("duration");
         BigDecimal monthlyPayment = (BigDecimal) session.getAttribute("monthly");
@@ -77,7 +78,7 @@ public class ThirdServlet extends HttpServlet {
         try {
             System.out.println("hi soumia ");
             requestService.save(newRequest);
-
+            response.sendRedirect("displayRequests.jsp");
             request.setAttribute("successMessage", "Votre demande a été soumise avec succès !");
 
         } catch (Exception e) {
