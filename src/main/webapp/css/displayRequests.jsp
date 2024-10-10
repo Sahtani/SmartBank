@@ -3,6 +3,7 @@
 <head>
     <title>Liste des Requêtes</title>
 </head>
+
 <body>
 <h1>Liste des Requêtes</h1>
 <table border="1">

@@ -14,7 +14,6 @@ public class RequestDaoImpl extends GenericDaoImpl<Request, Long> implements Req
         super(Request.class);
     }
 
-    // CDI-injected constructor
     @Inject
     public void init(EntityManager entityManager) {
         setEntityManager(entityManager);

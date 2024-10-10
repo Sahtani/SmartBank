@@ -1,0 +1,46 @@
+body {
+    background-color: #efefef;
+}
+
+.table-latitude {
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-latitude caption {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #fab700;
+    text-align: center;
+}
+.table-latitude thead {
+    border-top: 2px solid #fab700;
+    border-bottom: 2px solid #fab700;
+}
+.table-latitude thead th {
+    text-transform: uppercase;
+    text-align: center;
+    padding: 10px;
+    color: #00b5ad;
+    border: 2px solid #fab700;
+}
+.table-latitude tbody tr {
+    border-bottom: 1px solid #F1F1F1;
+    color: #75787b;
+}
+.table-latitude tbody tr td {
+    padding: 10px;
+    border: 2px solid #fab700;
+}
+.table-latitude tbody tr th {
+    padding-left: 10px;
+    border: 2px solid #fab700;
+}
+.table-latitude tfoot {
+    color: #fab700;
+    font-style: italic;
+    border-bottom: 2px solid #fab700;
+}
+.table-latitude tfoot tr td {
+    padding: 10px;
+    border: 2px solid #fab700;
+}
