@@ -18,7 +18,7 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "requeste", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
     private Set<RequestStatus> requestStatuses = new HashSet<>();
 
     @NotNull

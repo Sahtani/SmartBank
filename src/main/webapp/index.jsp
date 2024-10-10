@@ -46,21 +46,23 @@
                     <div class="margin-x-1">
                         <p class="label">Mon projet</p>
                         <select id="project" name="project" class="minimal m-t-1">
-                            <option value="PRET_PERSONNEL">J’ai besoin d’argent</option>
-                            <option value="OCCASION">Je finance mon véhicule d’occasion</option>
-                            <option value="REV">Je Gère mes imprévus</option>
-                            <option value="CREDIT_AUTOMOBILE">Je finance mon véhicule neuf</option>
-                            <option value="CREDIT_MENAGE">J’équipe ma maison</option>
+                            <option value="pret_personnel">J’ai besoin d’argent</option>
+                            <option value="occasion">Je finance mon véhicule d’occasion</option>
+                            <option value="rev">Je Gère mes imprévus</option>
+                            <option value="credit_automobile">Je finance mon véhicule neuf</option>
+                            <option value="credit_menage">J’équipe ma maison</option>
+
                         </select>
                         <p class="label m-t-5">Je suis</p>
                         <select id="status" name="status" class="minimal m-t-1">
-                            <option value="SALARIE_PUBLIC">Fonctionnaire</option>
-                            <option value="SALARIE_PRIVE">Salarié du secteur privé</option>
-                            <option value="PROFESSION_LIBERALE">Profession libérale</option>
-                            <option value="COMMERCANT">Commerçant</option>
-                            <option value="ARTISAN">Artisan</option>
-                            <option value="RETRAITE">Retraité</option>
-                            <option value="AUTRE">Autres professions</option>
+                            <option value="salarie_public">Fonctionnaire</option>
+                            <option value="salarie_prive">Salarié du secteur privé</option>
+                            <option value="profession_libérale">Profession libérale</option>
+                            <option value="commercant">Commerçant</option>
+                            <option value="artisan">Artisan</option>
+                            <option value="retraite">Retraité</option>
+                            <option value="autre">Autres professions</option>
+
                         </select>
                         <div class="slider-container">
                             <p class="label m-t-5">Montant (en DH)</p>

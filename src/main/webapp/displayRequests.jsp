@@ -6,28 +6,40 @@
     <link rel="stylesheet" href="css/lists.css">
 </head>
 <body>
-<h1>Liste des Requêtes</h1>
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>HTML Tables</h1>
+            <caption>Liste des Requêtes</caption>
         </div>
         <div class="panel-body">
             <table class="table-latitude">
-                <caption>Employee Information</caption>
+
                 <thead>
-                <th>Name</th>
-                <th>Designation</th>
-                <th>E-mail</th>
-                <th>E-mail</th>
+                <td>Projet</td>
+                <td>Statut</td>
+                <td>Montant</td>
+                <td>Durée</td>
+                <td>Paiement Mensuel</td>
+                <td>Email</td>
+                <td>Prénom</td>
+                <td>CIN</td>
+                <td>Revenu Mensuel</td>
+
+
                 </thead>
                 <tbody>
                 <c:forEach var="request" items="${requests}">
                     <tr>
-                        <td>${request.id}</td>
+                        <td>${request.project}</td>
+                        <td>${request.status}</td>
                         <td>${request.amount}</td>
-                        <td>${request.amount}</td>
-                        <td>${request.amount}</td>
+                        <td>${request.monthlyPayment}</td>
+                        <td>${request.email}</td>
+                        <td>${request.firstName}</td>
+                        <td>${request.cin}</td>
+                        <td>${request.monthlyIncome}</td>
+
+
                     </tr>
                 </c:forEach>
                 </tbody>

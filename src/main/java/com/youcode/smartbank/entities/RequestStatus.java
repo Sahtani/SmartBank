@@ -18,7 +18,7 @@ public class RequestStatus {
 
     @ManyToOne
     @JoinColumn(name = "status_id")
-    private Status status;  // Status entity
+    private Status status;
 
     @Column(name = "date")
     private LocalDate date;
