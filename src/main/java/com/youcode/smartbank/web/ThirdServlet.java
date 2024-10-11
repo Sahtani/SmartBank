@@ -3,7 +3,11 @@ package com.youcode.smartbank.web;
 
 import com.youcode.smartbank.dao.implementations.RequestDaoImpl;
 import com.youcode.smartbank.entities.Request;
+import com.youcode.smartbank.entities.RequestStatus;
+import com.youcode.smartbank.entities.Status;
 import com.youcode.smartbank.service.interfaces.RequestServiceI;
+import com.youcode.smartbank.service.interfaces.RequestStatusServiceI;
+import com.youcode.smartbank.service.interfaces.StatusServiceI;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,16 +15,23 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.inject.Inject;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 @WebServlet("/thirdServlet")
 public class ThirdServlet extends HttpServlet {
 
     @Inject
     private RequestServiceI requestService;
+    @Inject
+    private StatusServiceI statusService;
+    @Inject
+    private RequestStatusServiceI requestStatusServiceI;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -74,10 +85,18 @@ public class ThirdServlet extends HttpServlet {
         newRequest.setHasExistingLoans(hasActivateCredits);
 
 
-
         try {
             System.out.println("hi soumia ");
-            requestService.save(newRequest);
+            Request requestCreated = requestService.save(newRequest);
+            Optional<Status> newStatus = statusService.getById(1L);
+            RequestStatus requestStatus = new RequestStatus();
+            requestStatus.setDate(LocalDate.from(LocalDateTime.now()));
+            requestStatus.setRequest(requestCreated);
+            requestStatus.setStatus(newStatus.get());
+            requestStatus.setDescription("La demande de crédit a été soumise et est en attente ");
+            RequestStatus statusDefault = requestStatusServiceI.save(requestStatus);
+            requestCreated.getRequestStatuses().add(statusDefault);
+
             response.sendRedirect("displayRequests");
             request.setAttribute("successMessage", "Votre demande a été soumise avec succès !");
 

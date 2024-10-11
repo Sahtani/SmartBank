@@ -1,16 +1,21 @@
 package com.youcode.smartbank.service.implementations;
 
+import com.youcode.smartbank.dao.interfaces.RequestStatusDaoI;
+import com.youcode.smartbank.dao.interfaces.StatusDaoI;
 import com.youcode.smartbank.entities.RequestStatus;
 import com.youcode.smartbank.service.interfaces.RequestStatusServiceI;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 
 import java.util.List;
 import java.util.Optional;
-
+@ApplicationScoped
 public class RequestStatusServiceImpl implements RequestStatusServiceI {
-
+    @Inject
+    private RequestStatusDaoI requestStatusDaoI;
     @Override
-    public void save(RequestStatus requestStatus) {
-
+    public RequestStatus save(RequestStatus requestStatus) {
+       return requestStatusDaoI.save(requestStatus);
     }
 
     @Override
