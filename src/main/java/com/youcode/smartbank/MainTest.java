@@ -1,27 +1,21 @@
 package com.youcode.smartbank;
 
-import com.youcode.smartbank.entities.Request;
-import com.youcode.smartbank.service.interfaces.RequestServiceI;
-import jakarta.enterprise.inject.spi.CDI; // Assurez-vous d'importer ceci
-
-import java.util.List;
+import com.youcode.smartbank.dao.implementations.StatusDaoImpl;
+import com.youcode.smartbank.dao.interfaces.StatusDaoI;
+import com.youcode.smartbank.entities.Status;
+import com.youcode.smartbank.service.implementations.StatusServiceImpl;
+import com.youcode.smartbank.service.interfaces.StatusServiceI;
 
 public class MainTest {
     public static void main(String[] args) {
-        // Récupérer une instance de RequestServiceI via CDI
-        RequestServiceI requestService = CDI.current().select(RequestServiceI.class).get();
+        StatusDaoI statusDao = new StatusDaoImpl();
+        StatusServiceI statusService = new StatusServiceImpl(statusDao);
 
-        // Récupérer toutes les requêtes
-        List<Request> requests = requestService.getAll();
+        Status newStatus = new Status();
+        newStatus.setId(1L);
+        newStatus.setStatus("pending ");
 
-        // Afficher les requêtes
-        if (requests != null && !requests.isEmpty()) {
-            System.out.println("Requests retrieved successfully:");
-            for (Request req : requests) {
-                System.out.println(req); // Assurez-vous que la méthode toString() est correctement implémentée dans Request
-            }
-        } else {
-            System.out.println("No requests found.");
-        }
+        Status savedStatus = statusService.save(newStatus);
+        System.out.println("Saved Status: " + savedStatus);
     }
 }

@@ -1,22 +1,16 @@
 package com.youcode.smartbank.dao.implementations;
 
-import com.youcode.smartbank.dao.interfaces.RequestDao;
+import com.youcode.smartbank.dao.interfaces.RequestDaoI;
 import com.youcode.smartbank.entities.Request;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.context.RequestScoped;
-import jakarta.inject.Inject;
-import jakarta.persistence.EntityManager;
 
 @ApplicationScoped
-public class RequestDaoImpl extends GenericDaoImpl<Request, Long> implements RequestDao {
+public class RequestDaoImpl extends GenericDaoImpl<Request, Long> implements RequestDaoI {
 
 
     public RequestDaoImpl() {
         super(Request.class);
     }
 
-    @Inject
-    public void init(EntityManager entityManager) {
-        setEntityManager(entityManager);
-    }
+
 }

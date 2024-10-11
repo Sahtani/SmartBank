@@ -1,6 +1,6 @@
 package com.youcode.smartbank.service.implementations;
 
-import com.youcode.smartbank.dao.interfaces.RequestDao;
+import com.youcode.smartbank.dao.interfaces.RequestDaoI;
 import com.youcode.smartbank.entities.Request;
 import com.youcode.smartbank.service.interfaces.RequestServiceI;
 import jakarta.inject.Inject;
@@ -16,7 +16,7 @@ import java.util.Set;
 @ApplicationScoped
 public class RequestServiceImpl implements RequestServiceI {
     @Inject
-    private RequestDao requestDao;
+    private RequestDaoI requestDao;
 
     private final Validator validator;
 
@@ -26,9 +26,9 @@ public class RequestServiceImpl implements RequestServiceI {
     }
 
     @Override
-    public void save(Request request) {
+    public Request save(Request request) {
         validateRequest(request);
-        requestDao.save(request);
+       return requestDao.save(request);
 
     }
 

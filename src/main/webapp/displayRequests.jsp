@@ -24,8 +24,8 @@
                 <td>Prénom</td>
                 <td>CIN</td>
                 <td>Revenu Mensuel</td>
-                <th >Details</th>
-                <th >Action</th>
+                <th>Details</th>
+                <th>Action</th>
 
 
                 </thead>
@@ -45,12 +45,12 @@
                             <td>${request.monthlyIncome}</td>
                             <td class="th-d">
                                 <button class="ban-btn"
-                                        onclick="showModal(1)">Détails
+                                        onclick="showModal(${request.id})">Détails
                                 </button>
                             </td>
                             <td>
                                 <button class="ban-btn"
-                                        onclick="showStatusModal(1)">Modifier Status
+                                        onclick="showStatusModal(${request.id})">Modifier Status
                                 </button>
                             </td>
 

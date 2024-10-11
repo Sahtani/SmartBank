@@ -2,10 +2,10 @@ package com.youcode.smartbank.dao.interfaces;
 
 import java.util.List;
 
-public interface GenericDao<T, ID> {
+public interface GenericDaoI<T, ID> {
     T findById(ID id);
     List<T> findAll();
-    void save(T entity);
+    T save(T entity);
     void update(T entity);
     void delete(T entity);
 }

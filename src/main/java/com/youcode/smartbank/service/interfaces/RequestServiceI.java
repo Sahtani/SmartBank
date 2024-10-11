@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface RequestServiceI {
 
-    void save(Request request);
+    Request save(Request request);
     void update(Request request);
     void delete(Request request);
     Optional<Request> getById(Long id);
