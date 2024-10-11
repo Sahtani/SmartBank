@@ -1,6 +1,5 @@
 package com.youcode.smartbank.service.implementations;
 
-import com.youcode.smartbank.dao.implementations.RequestDaoImpl;
 import com.youcode.smartbank.dao.interfaces.RequestDao;
 import com.youcode.smartbank.entities.Request;
 import com.youcode.smartbank.service.interfaces.RequestServiceI;
@@ -11,6 +10,7 @@ import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import jakarta.enterprise.context.ApplicationScoped;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @ApplicationScoped
@@ -43,8 +43,8 @@ public class RequestServiceImpl implements RequestServiceI {
     }
 
     @Override
-    public Request getById(String id) {
-        return null;
+    public Optional<Request> getById(Long id){
+        return Optional.ofNullable(requestDao.findById(id));
     }
 
     @Override

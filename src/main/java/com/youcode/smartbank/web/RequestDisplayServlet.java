@@ -23,12 +23,6 @@ public class RequestDisplayServlet extends HttpServlet {
         System.out.println("doGet called");
         try {
             List<Request> requests = requestService.getAll();
-            System.out.println(requests.size());
-            System.out.println("requests");
-            for (Request req : requests) {
-                System.out.println(req); // Vous pouvez personnaliser cette ligne si vous avez une méthode toString() dans votre classe Request
-            }
-
             request.setAttribute("requests", requests);
             request.getRequestDispatcher("displayRequests.jsp").forward(request, response);
         } catch (Exception e) {
