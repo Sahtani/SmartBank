@@ -26,8 +26,7 @@ public class CreditServiceTest {
 
     @BeforeEach
     public void setup() {
-        // Manually create the instance and inject any necessary dependencies
-        requestService = new RequestServiceImpl(/* inject dependencies here if needed */);
+        requestService = new RequestServiceImpl();
     }
 
     @Test
