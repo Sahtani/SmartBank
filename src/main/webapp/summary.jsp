@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Formulaire de Simulation de Crédit</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/model.css">
 </head>
 <body>
 <div class="credit-form">
@@ -25,19 +26,17 @@
         </div>
     </div>
 
-    <form action="${pageContext.request.contextPath}/secondServlet" method="post" id="contactForm">
+    <form onsubmit="return validateForm()"  action="${pageContext.request.contextPath}/secondServlet" method="post" id="contactForm">
         <input type="hidden" name="formType" value="form2">
         <div class="form-group">
-            <input type="email" id="email" name="email" required>
+            <input type="email" id="email" name="email" >
             <label for="email">Email*</label>
         </div>
         <div class="form-group">
-            <input type="tel" id="phone" name="phone" required>
+            <input type="tel" id="phone" name="phone"   >
             <label for="phone">Téléphone mobile*</label>
         </div>
-        <div class="recaptcha">
-            <div class="g-recaptcha" data-sitekey="your_site_key_here"></div>
-        </div>
+
         <div class="div-button">
             <button class="button" type="submit" name="submit">
                 <span class="main-text">Continuer</span>
@@ -73,17 +72,20 @@
 </div>
 </div>
 </div>
+<div id="errorModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="border-b flex-center ">
+            <div class="erreur">
+                <ul id="errorList" class="error-list"></ul>
+            </div>
+        </div>
+        <div class="flex-end p-5">
+            <button type="button" class="button3 m-t-4" onclick="closeModal()">
+                <p class="p-10">Fermer</p>
+            </button>
+        </div>
+    </div>
 
-<div class="summary" id="summary" >
-    <h2>Détails de mon crédit</h2>
-    <p id="projectSummary"></p>
-    <p id="statusSummary"></p>
-    <p id="amountSummary"></p>
-    <p id="durationSummary"></p>
-    <p id="monthlySummary"></p>
-    <p id="feesSummary"></p>
-</div>
 <script src="js/summary.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </body>
 </html>

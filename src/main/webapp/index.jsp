@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/model.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
@@ -42,7 +43,7 @@
                         <p class="p-1">Mes infos personnelles</p>
                     </div>
                 </div>
-                <form action="${pageContext.request.contextPath}/firstServlet" method="post" id="loanForm">
+                <form  onsubmit="return validateForm()" action="${pageContext.request.contextPath}/firstServlet" method="post" id="loanForm">
                     <div class="margin-x-1">
                         <p class="label">Mon projet</p>
                         <select id="project" name="project" class="minimal m-t-1">
@@ -72,7 +73,7 @@
                             <input class="input1 w-5" type="number" id="durationValue" name="duration" min="12" max="120" step="6" value="12">
                             <input type="range" min="12" max="120" step="6" value="12" class="slider" id="durationSlider">
                             <p class="label m-t-5">Mensualités (en DH)</p>
-                            <input class="input1 w-9" type="number" id="mensualiteValue" name="monthly" min="1" max="80000" value="70">
+                            <input class="input1 w-9"  id="mensualiteValue" name="monthly" min="1" max="80000" value="70">
                             <input type="range" min="1" max="80000" step="100" value="70" class="slider" id="mensualiteSlider">
                         </div>
                         <div class="flex-center">
@@ -98,6 +99,20 @@
                 <p class="color-four bg1">Mon projet</p>
                 <p class="color-first pret">Prêt Personnel</p>
             </div>
+        </div>
+    </div>
+</div>
+<div id="errorModal" class="modal" style="display: none;">
+    <div class="modal-content">
+        <div class="border-b flex-center ">
+            <div class="erreur">
+                <ul id="errorList" class="error-list"></ul>
+            </div>
+        </div>
+        <div class="flex-end p-5">
+            <button type="button" class="button3 m-t-4" onclick="closeModal()">
+                <p class="p-10">Fermer</p>
+            </button>
         </div>
     </div>
 </div>

@@ -2,6 +2,7 @@ package com.youcode.smartbank.service.interfaces;
 
 import com.youcode.smartbank.entities.Request;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,7 @@ public interface RequestServiceI {
     void update(Request request);
     void delete(Request request);
     Optional<Request> getById(Long id);
-    Double calculerMensualite(Long capital, Long dureeEnMois);
+    Double calculerMensualite(BigDecimal capital, int dureeEnMois);
 
     List<Request> getAll();
 }

@@ -68,16 +68,18 @@ public class RequestServiceImpl implements RequestServiceI {
         }
     }
     @Override
-    public Double calculerMensualite(Long capital, Long dureeEnMois) {
+    public Double calculerMensualite(BigDecimal capital, int dureeEnMois) {
         BigDecimal tauxAnnuel = BigDecimal.valueOf(0.12);
         BigDecimal tauxMensuel = tauxAnnuel.divide(BigDecimal.valueOf(12), 10, RoundingMode.HALF_UP);
 
-        double puissance = Math.pow(1 + tauxMensuel.doubleValue(), -dureeEnMois);
-        BigDecimal denominateur = BigDecimal.ONE.subtract(BigDecimal.valueOf(puissance));
+        BigDecimal puissance = BigDecimal.valueOf(Math.pow(1 + tauxMensuel.doubleValue(), -dureeEnMois));
 
-        BigDecimal mensualite = BigDecimal.valueOf(capital).multiply(tauxMensuel).divide(denominateur, 2, RoundingMode.HALF_UP);
+        BigDecimal denominateur = BigDecimal.ONE.subtract(puissance);
+
+        BigDecimal mensualite = capital.multiply(tauxMensuel).divide(denominateur, 2, RoundingMode.HALF_UP);
 
         return mensualite.doubleValue();
     }
+
 
 }

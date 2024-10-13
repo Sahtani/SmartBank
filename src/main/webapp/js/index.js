@@ -4,10 +4,11 @@ const durationSlider = document.getElementById('durationSlider');
 const durationValue = document.getElementById('durationValue');
 const mensualiteSlider = document.getElementById('mensualiteSlider');
 const mensualiteValue = document.getElementById('mensualiteValue');
+
 const tauxInteretAnnuel = 0.12;
 
 function calculerMensualite(capital, dureeEnMois, tauxAnnuel) {
-    const tauxMensuel = tauxAnnuel / 12;o
+    const tauxMensuel = tauxAnnuel / 12;
     const mensualite = (capital * tauxMensuel) / (1 - Math.pow(1 + tauxMensuel, -dureeEnMois));
     return mensualite.toFixed(2);
 }
@@ -22,6 +23,8 @@ function updateMensualite() {
     const capital = parseFloat(numberInput.value);
     const dureeEnMois = parseInt(durationValue.value);
     let mensualite = calculerMensualite(capital, dureeEnMois, tauxInteretAnnuel);
+
+
     mensualiteValue.value = mensualite;
     mensualiteSlider.value = mensualite;
 }
@@ -30,6 +33,7 @@ function updateDureeFromMensualite() {
     const capital = parseFloat(numberInput.value);
     const mensualite = parseFloat(mensualiteValue.value);
     const dureeEnMois = calculerDuree(capital, mensualite, tauxInteretAnnuel);
+
     durationValue.value = dureeEnMois;
     durationSlider.value = dureeEnMois;
 }
@@ -59,27 +63,53 @@ mensualiteSlider.addEventListener('input', function () {
     updateDureeFromMensualite();
 });
 
-
-const loanForm = document.getElementById('loanForm');
-loanForm.addEventListener('submit', function (event) {
-
-    const project = document.getElementById('project').value;
-    const status = document.getElementById('status').value;
-    const amount = document.getElementById('sliderValue').value;
-    const duration = document.getElementById('durationValue').value;
-    const monthly = document.getElementById('mensualiteValue').value;
-    const fees = (amount * 0.0165);
-    const loanDetails = {
-        project,
-        status,
-        amount,
-        duration,
-        monthly,
-        fees
-    };
-    localStorage.setItem('loanDetails', JSON.stringify(loanDetails));
-    console.log('Loan Details Saved to Local Storage:', loanDetails);
-
-
-   // window.location = 'summary.jsp';
+mensualiteValue.addEventListener('input', function () {
+    mensualiteSlider.value = mensualiteValue.value;
+    updateDureeFromMensualite();
 });
+
+updateMensualite();
+
+function validateForm() {
+    const montant = parseFloat(document.getElementById('sliderValue').value);
+    const duree = parseInt(document.getElementById('durationValue').value);
+    const mensualites = parseFloat(document.getElementById('mensualiteValue').value);
+    let errors = [];
+
+    if (isNaN(montant) || montant <= 0) {
+        errors.push('Le montant doit être un nombre supérieur à 0.');
+    }
+    if (isNaN(duree) || duree <= 0) {
+        errors.push('La durée doit être un nombre entier supérieur à 0.');
+    }
+    if (isNaN(mensualites) || mensualites <= 0) {
+        errors.push('Les mensualités doivent être supérieures à 0.');
+    }
+
+    if (errors.length > 0) {
+        showModal(errors);
+        return false;
+    }
+    return true;
+}
+
+function showModal(errors) {
+    const errorList = document.getElementById('errorList');
+    errorList.innerHTML = '';
+
+    errors.forEach(error => {
+        const li = document.createElement('li');
+        li.style.marginBottom = '8px';
+        li.textContent = error;
+        errorList.appendChild(li);
+    });
+
+    const modal = document.getElementById('errorModal');
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    const modal = document.getElementById('errorModal');
+    modal.style.display = 'none';
+
+}

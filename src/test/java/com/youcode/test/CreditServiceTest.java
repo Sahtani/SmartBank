@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -31,12 +33,11 @@ public class CreditServiceTest {
 
     @Test
     public void testCalculerMensualite() {
-        Long capital = 100000L;
-        Long dureeEnMois = 24L;
+        BigDecimal capital = BigDecimal.valueOf(100000L);
+        int dureeEnMois = 24;
         double expectedMensualite = 4707.94;
-
         double result = requestService.calculerMensualite(capital, dureeEnMois);
-
         assertEquals(expectedMensualite, result, 0.01, "Le montant mensuel calculé est incorrect");
     }
+
 }
