@@ -8,148 +8,149 @@
 <body>
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">
-
-        </div>
+        <div class="panel-heading">Liste des Requêtes</div>
         <div class="panel-body">
             <table class="table-latitude">
                 <caption>Liste des Requêtes</caption>
                 <thead>
-                <td>Projet</td>
-                <td>Statut</td>
-                <td>Montant</td>
-                <td>Durée</td>
-                <td>Paiement Mensuel</td>
-                <td>Email</td>
-                <td>Prénom</td>
-                <td>CIN</td>
-                <td>Revenu Mensuel</td>
-                <th>Details</th>
-                <th>Action</th>
-
-
+                <tr>
+                    <th>Projet</th>
+                    <th>Statut</th>
+                    <th>Montant</th>
+                    <th>Durée</th>
+                    <th>Paiement Mensuel</th>
+                    <th>Email</th>
+                    <th>Prénom</th>
+                    <th>CIN</th>
+                    <th>Revenu Mensuel</th>
+                    <th>Détails</th>
+                    <th>Action</th>
+                </tr>
                 </thead>
                 <tbody>
-
-                <c:if test="${not empty requests}">
-                    <c:forEach var="request" items="${requests}">
+                <c:choose>
+                    <c:when test="${not empty requests}">
+                        <c:forEach var="request" items="${requests}">
+                            <tr>
+                                <td>${request.project}</td>
+                                <td>${request.status}</td>
+                                <td>${request.amount}</td>
+                                <td>${request.duration}</td>
+                                <td>${request.monthlyPayment}</td>
+                                <td>${request.email}</td>
+                                <td>${request.firstName}</td>
+                                <td>${request.cin}</td>
+                                <td>${request.monthlyIncome}</td>
+                                <td>
+                                    <button class="ban-btn" onclick="showModal(${request.id})">Détails</button>
+                                </td>
+                                <td>
+                                    <button class="ban-btn" onclick="showStatusModal(${request.id})">Modifier Statut
+                                    </button>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </c:when>
+                    <c:otherwise>
                         <tr>
-                            <td>${request.project}</td>
-                            <td>${request.status}</td>
-                            <td>${request.amount}</td>
-                            <td>${request.duration}</td>
-                            <td>${request.monthlyPayment}</td>
-                            <td>${request.email}</td>
-                            <td>${request.firstName}</td>
-                            <td>${request.cin}</td>
-                            <td>${request.monthlyIncome}</td>
-                            <td class="th-d">
-                                <button class="ban-btn"
-                                        onclick="showModal(${request.id})">Détails
-                                </button>
-                            </td>
-                            <td>
-                                <button class="ban-btn"
-                                        onclick="showStatusModal(${request.id})">Modifier Status
-                                </button>
-                            </td>
-
-
+                            <td colspan="11">Aucun crédit trouvé.</td>
                         </tr>
-                    </c:forEach>
-                </c:if>
-                <c:if test="${empty requests}">
+                    </c:otherwise>
+                </c:choose>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<c:forEach var="request" items="${requests}">
+    <div id="modal-${request.id}" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal(${request.id})">&times;</span>
+            <h2>Historique du Crédit</h2>
+            <div class="table-container h-table">
+                <table class="custom-table">
+                    <thead>
                     <tr>
-                        <td colspan="15">Aucun crédit trouvé.</td>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Explication</th>
                     </tr>
-                </c:if>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-<div id="modal-1" class="modal">
-    <div class="modal-content"><span class="close-btn" onclick="closeModal(1)">&times;</span>
-        <h2>Historique du Crédit</h2>
-        <div class="table-container h-table">
-            <table class="custom-table">
-                <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Status</th>
-                    <th>Explication</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>2024-03-24</td>
-                    <td>Approuvé</td>
-                    <td>Crédit approuvé après révision des documents</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="flex-end p-5">
-        </div>
-    </div>
-</div>
+                    </thead>
+                    <tbody>
+                    <c:if test="${not empty request.requestStatuses}">
+                        <c:forEach var="status" items="${request.requestStatuses}">
+                            <tr>
+                                <td>${status.date}</td>
+                                <td>${status.status.status}</td>
+                                <td>${status.description}</td>
+                            </tr>
+                        </c:forEach>
+                    </c:if>
+                    <c:if test="${empty request.requestStatuses}">
+                        <tr>
+                            <td colspan="3">Aucun statut trouvé.</td>
+                        </tr>
+                    </c:if>
 
-<div id="status-modal-1" class="modal">
-    <div class="modal-content model-heigth"><span class="close-btn" onclick="closeStatusModal(1)">&times;</span>
-        <h2>Modifier Status</h2>
-        <form>
-            <label for="status">Nouveau Status:</label> <select id="status" name="status">
-            <option value="Actif">Actif</option>
-            <option value="Inactif">Inactif</option>
-            <option value="Suspendu">Suspendu</option>
-        </select>
-            <div class="flex-end p-5">
-                <button type="button" class="button3" onclick="submitStatus(1)">
-                    <p class="p-10">Soumettre</p>
-
-                </button>
+                    </tbody>
+                </table>
             </div>
-        </form>
+        </div>
     </div>
-</div>
+    <div id="status-modal-${request.id}" class="modal">
+        <div class="modal-content model-height">
+            <span class="close-btn" onclick="closeStatusModal(${request.id})">&times;</span>
+            <h2>Modifier Statut</h2>
+            <form action="${pageContext.request.contextPath}/updateStatusServlet" method="post">
+                <input type="hidden" name="requestId" value="${request.id}"/>
+                <label for="status-${request.id}">Nouveau Statut:</label>
+                <select name="status" id="status-${request.id}">
+                    <c:forEach var="status" items="${statuses}">
+                        <option value="${status.id}">${status.status}</option>
+                    </c:forEach>
+                </select>
+
+
+                <div class="m-t-9 input-container">
+                        <textarea name="description" id="explication-${credit.id}" placeholder="" rows="6" cols="50"
+                                  class="custom-input"></textarea>
+                    <label for="explication-${request.id}" class="custom-label">Explication*</label>
+                </div>
+                <div class="flex-end p-5">
+                    <button type="submit" class="button3">Soumettre</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</c:forEach>
 
 <script>
     function showModal(creditId) {
-        var modal = document.getElementById('modal-' + creditId);
-        modal.style.display = "block";
+        document.getElementById('modal-' + creditId).style.display = "block";
     }
 
     function closeModal(creditId) {
-        var modal = document.getElementById('modal-' + creditId);
-        modal.style.display = "none";
+        document.getElementById('modal-' + creditId).style.display = "none";
     }
 
     function showStatusModal(id) {
-        var modal = document.getElementById('status-modal-' + id);
-        modal.style.display = "block";
+        document.getElementById('status-modal-' + id).style.display = "block";
     }
 
     function closeStatusModal(id) {
-        var modal = document.getElementById('status-modal-' + id);
-        modal.style.display = "none";
-    }
-
-    function submitStatus(id) {
-        var status = document.getElementById('status').value;
-        alert("Le status a été mis à jour à: " + status);
-        closeStatusModal(id);
+        document.getElementById('status-modal-' + id).style.display = "none";
     }
 
     window.onclick = function (event) {
-        var modals = document.querySelectorAll('.modal');
+        const modals = document.querySelectorAll('.modal');
         modals.forEach(modal => {
-            if (event.target == modal) {
+            if (event.target === modal) {
                 modal.style.display = "none";
             }
         });
-    }
+    };
 </script>
-
 </body>
-
 </html>

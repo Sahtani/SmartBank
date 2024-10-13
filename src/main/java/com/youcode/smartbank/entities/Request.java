@@ -5,9 +5,7 @@ import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 
 @Entity
@@ -18,8 +16,9 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(mappedBy = "request", cascade = CascadeType.ALL)
-    private Set<RequestStatus> requestStatuses = new HashSet<>();
+    @OneToMany(mappedBy = "request", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private List<RequestStatus> requestStatuses = new ArrayList<>();
+
 
     @NotNull
     @NotBlank
@@ -105,11 +104,11 @@ public class Request {
         this.id = id;
     }
 
-    public Set<RequestStatus> getRequestStatuses() {
+    public List<RequestStatus> getRequestStatuses() {
         return requestStatuses;
     }
 
-    public void setRequestStatuses(Set<RequestStatus> requestStatuses) {
+    public void setRequestStatuses(List<RequestStatus> requestStatuses) {
         this.requestStatuses = requestStatuses;
     }
 

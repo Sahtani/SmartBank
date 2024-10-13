@@ -11,7 +11,7 @@ public interface RequestServiceI {
     void update(Request request);
     void delete(Request request);
     Optional<Request> getById(Long id);
-
+    Double calculerMensualite(Long capital, Long dureeEnMois);
 
     List<Request> getAll();
 }

@@ -40,6 +40,6 @@ public class StatusServiceImpl implements StatusServiceI {
 
     @Override
     public List<Status> getAll() {
-        return List.of();
+        return statusDaoI.findAll();
     }
 }

@@ -2,6 +2,7 @@ package com.youcode.smartbank.service.implementations;
 
 import com.youcode.smartbank.dao.interfaces.RequestDaoI;
 import com.youcode.smartbank.entities.Request;
+import com.youcode.smartbank.entities.RequestStatus;
 import com.youcode.smartbank.service.interfaces.RequestServiceI;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
@@ -9,9 +10,13 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 import jakarta.enterprise.context.ApplicationScoped;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class RequestServiceImpl implements RequestServiceI {
@@ -49,7 +54,6 @@ public class RequestServiceImpl implements RequestServiceI {
 
     @Override
     public List<Request> getAll() {
-        System.out.println("RequestServiceImpl.getAll() called");
         return requestDao.findAll();
     }
 
@@ -63,4 +67,17 @@ public class RequestServiceImpl implements RequestServiceI {
             throw new IllegalArgumentException(sb.toString());
         }
     }
+    @Override
+    public Double calculerMensualite(Long capital, Long dureeEnMois) {
+        BigDecimal tauxAnnuel = BigDecimal.valueOf(0.12);
+        BigDecimal tauxMensuel = tauxAnnuel.divide(BigDecimal.valueOf(12), 10, RoundingMode.HALF_UP);
+
+        double puissance = Math.pow(1 + tauxMensuel.doubleValue(), -dureeEnMois);
+        BigDecimal denominateur = BigDecimal.ONE.subtract(BigDecimal.valueOf(puissance));
+
+        BigDecimal mensualite = BigDecimal.valueOf(capital).multiply(tauxMensuel).divide(denominateur, 2, RoundingMode.HALF_UP);
+
+        return mensualite.doubleValue();
+    }
+
 }

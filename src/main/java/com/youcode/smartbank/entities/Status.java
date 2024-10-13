@@ -15,7 +15,7 @@ public class Status {
     @Column(name = "status")
     private String status;
 
-    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "status", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Set<RequestStatus> requestStatuses = new HashSet<>();
 
     public Status(Long id, String status, Set<RequestStatus> requestStatuses) {

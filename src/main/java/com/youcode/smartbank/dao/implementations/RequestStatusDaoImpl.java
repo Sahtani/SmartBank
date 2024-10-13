@@ -8,4 +8,5 @@ public class RequestStatusDaoImpl extends GenericDaoImpl<RequestStatus, Long> im
     public RequestStatusDaoImpl() {
         super(RequestStatus.class);
     }
+
 }

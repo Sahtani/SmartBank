@@ -36,7 +36,7 @@
             </div>
 
             <div class="credit-form">
-                <form action="${pageContext.request.contextPath}/thirdServlet" method="post">
+                <form action="${pageContext.request.contextPath}/displayRequests" method="post">
                     <div class="form-group radio-group">
                         <label class="label">Civilité</label><br>
                         <div class="options">
