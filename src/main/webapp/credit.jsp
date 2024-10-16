@@ -95,7 +95,9 @@
                     </div>
                     <div class="form-group checkbox-group">
                         <input type="checkbox" id="conditions" name="conditions" required>
-                        <label for="conditions">J'ai lu et j'accepte les <a href="#">conditions générales d'utilisation</a> figurant sur les informations légales, notamment la mention relative à la protection des données personnelles</label>
+                        <label for="conditions">J'ai lu et j'accepte les <a href="#">conditions générales
+                            d'utilisation</a> figurant sur les informations légales, notamment la mention relative à la
+                            protection des données personnelles</label>
                     </div>
                     <div class="button-group">
                         <button type="submit" class="submit-button" name="submit">Demander ce crédit</button>
@@ -118,11 +120,11 @@
                 <h3>Coordonnées et infos personnelles</h3>
                 <div class="info-group">
                     <span>Email:</span>
-                    <span class="highlight">soumia.sahtani@gmail.com</span>
+                    <span class="highlight"><%= session.getAttribute("email") %></span>
                 </div>
                 <div class="info-group">
                     <span>Téléphone:</span>
-                    <span class="highlight">0774567955</span>
+                    <span class="highlight"><%= session.getAttribute("phone") %></span>
                 </div>
             </section>
 
@@ -130,19 +132,19 @@
                 <h3>Détails de mon crédit</h3>
                 <div class="info-group">
                     <span>Vous êtes:</span>
-                    <span class="highlight">Fonctionnaire</span>
+                    <span class="highlight"><%= session.getAttribute("status") %></span>
                 </div>
                 <div class="info-group">
                     <span>Montant:</span>
-                    <span class="highlight">10 000 DH</span>
+                    <span class="highlight"><%= session.getAttribute("amount") %> DH</span>
                 </div>
                 <div class="info-group">
                     <span>Durée:</span>
-                    <span class="highlight">24 mois</span>
+                    <span class="highlight"><%= session.getAttribute("duration") %>mois</span>
                 </div>
                 <div class="info-group">
                     <span>Mensualité:</span>
-                    <span class="highlight">469,40 DH</span>
+                    <span class="highlight"><%= session.getAttribute("monthly") %> DH</span>
                 </div>
                 <div class="info-group">
                     <span>Frais de dossier:</span>
@@ -152,13 +154,7 @@
         </div>
 
     </div>
-    <p class="color-four bg1 ">votre email</p>
-    <p class="color-first pret"><%= session.getAttribute("email") %></p>
 
-    <div class="data">
-        <p class="color-four fs2">votre telephone:</p>
-        <p class=" color-first fs2 fw"><%= session.getAttribute("phone") %></p>
-    </div>
 </div>
 
 </body>

@@ -33,11 +33,11 @@ public class CreditServiceTest {
 
     @Test
     public void testCalculerMensualite() {
-        BigDecimal capital = BigDecimal.valueOf(100000L);
-        int dureeEnMois = 24;
-        double expectedMensualite = 4707.94;
-        double result = requestService.calculerMensualite(capital, dureeEnMois);
-        assertEquals(expectedMensualite, result, 0.01, "Le montant mensuel calculé est incorrect");
+        BigDecimal capital = BigDecimal.valueOf(10000);
+        int dureeEnMois = 12;
+        double expectedMensualite = 888.49;
+        double result =requestService.calculerMensualite(capital, dureeEnMois);
+        assertEquals(expectedMensualite, result, 0.01);
     }
 
 }

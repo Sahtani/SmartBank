@@ -36,15 +36,25 @@ public class ThirdServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("doGet called");
         try {
-            List<Request> requests = requestService.getAll();
+            String dateParam = request.getParameter("date");
+            String statusParam = request.getParameter("status");
+            HttpSession session = request.getSession();
+            session.setAttribute("date", dateParam);
+            session.setAttribute("status", statusParam);
+
+            List<Request> requests;
+
+            if (dateParam != null && !dateParam.isEmpty() && statusParam != null && !statusParam.isEmpty()) {
+                LocalDate date = LocalDate.parse(dateParam);
+                requests = requestService.findRequestsByDateAndStatus(date, statusParam);
+            } else {
+                requests = requestService.getAll();
+            }
+
             List<Status> statuses = statusService.getAll();
-
-
             request.setAttribute("requests", requests);
             request.setAttribute("statuses", statuses);
-
             request.getRequestDispatcher("displayRequests.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
@@ -121,7 +131,7 @@ public class ThirdServlet extends HttpServlet {
                 }
 
                 request.setAttribute("successMessage", "Your request has been successfully submitted!");
-                response.sendRedirect("displayRequests");
+                response.sendRedirect("success.jsp");
 
             }
         } catch (Exception e) {

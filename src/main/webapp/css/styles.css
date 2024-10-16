@@ -5,7 +5,7 @@ body {
 }
 
 .credit-form {
-    max-width: 600px;
+    max-width: 100%;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -16,12 +16,14 @@ body {
     display: flex;
     margin-bottom: 30px;
 }
+
 .progress-bar .step {
     flex: 1;
     text-align: center;
     padding: 10px;
     position: relative;
 }
+
 .progress-bar .step .number {
     display: inline-block;
     width: 30px;
@@ -33,22 +35,27 @@ body {
     font-weight: bold;
     font-size: 32px;
 }
+
 .progress-bar .step .text {
     display: block;
     font-size: 14px;
     font-weight: bold;
     line-height: 1;
 }
+
 .progress-bar .step.completed {
     background-color: #00b3b0;
     color: #fff;
 }
+
 .progress-bar .step.completed .number {
     color: #fff;
 }
+
 .progress-bar .step.active {
     background-color: #ffd700;
 }
+
 .progress-bar .step.active::after {
     content: "";
     position: absolute;
@@ -61,16 +68,20 @@ body {
     border-right: 10px solid transparent;
     border-top: 10px solid #ffd700;
 }
+
 .progress-bar .step.step2 {
     height: max-content;
     color: #30435C;
 }
+
 .progress-bar .step.step2 .number2 {
     color: #30435C;
 }
+
 .progress-bar .step.step3 {
     background-color: #9B9B9B;
 }
+
 .progress-bar .step.step3 .text {
     color: #fff;
 }
@@ -79,6 +90,7 @@ body {
     position: relative;
     margin-bottom: 20px;
 }
+
 .form-group input {
     width: 100%;
     padding: 10px 0;
@@ -90,12 +102,14 @@ body {
     color: #00b5ad;
     font-weight: bold;
 }
+
 .form-group input:focus + label, .form-group input:valid + label {
     top: -15px;
     font-size: 12px;
     color: #30435C;
     font-weight: bold;
 }
+
 .form-group label {
     position: absolute;
     top: 10px;
@@ -129,14 +143,26 @@ body {
     text-align: center;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
+
 .button .main-text {
     font-size: 14px;
     font-weight: bold;
     text-transform: none;
     display: block;
 }
+
 .button .sub-text {
     font-size: 12px;
     font-weight: normal;
     margin-top: 2px;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 100px;
+    max-width: 1200px;
+    margin-left: 200px;
 }

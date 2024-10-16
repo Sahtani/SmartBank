@@ -54,16 +54,16 @@ public class updateStatusServlet extends HttpServlet {
         if (statusActuel.isPresent()) {
             RequestStatus latestStatus = statusActuel.get();
             if (latestStatus.getStatus().getStatus().equals(newStatus.get().getStatus())) {
-                session.setAttribute("flashMessage", "Le statut n’a pas été modifié, puisqu’il est déjà le même");
+                session.setAttribute("Message", "Le statut n’a pas été modifié, puisqu’il est déjà le même");
                 response.sendRedirect("displayRequests");
             } else {
                 RequestStatus listRequestStatus = requestStatusServiceI.save(requestStatus);
                 newCredit.get().getRequestStatuses().add(listRequestStatus);
-                session.setAttribute("flashMessage", "Le statut a été modifié avec succès");
+                session.setAttribute("Message", "Le statut a été modifié avec succès");
                 response.sendRedirect("displayRequests");
             }
         } else {
-            session.setAttribute("flashMessage", "Aucun statut actuel trouvé");
+            session.setAttribute("Message", "Aucun statut actuel trouvé");
             response.sendRedirect("displayRequests");
         }
     }

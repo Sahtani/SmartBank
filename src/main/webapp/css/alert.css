@@ -1,0 +1,160 @@
+#alertPopup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border-left: 5px solid #02AFBC;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    z-index: 9999;
+    transition: opacity 0.5s ease-in-out, transform 0.5s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#alertPopup.hide {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.toast-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+}
+
+.toast-content svg {
+    flex-shrink: 0;
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.message .text-1 {
+    font-weight: bold;
+    font-size: 1rem;
+    color: #333;
+}
+
+.message .text-2 {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.close svg {
+    width: 20px;
+    height: 20px;
+    color: #333;
+    transition: color 0.3s;
+}
+
+.close:hover svg {
+    color: #e74c3c;
+}
+
+.progress {
+    height: 5px;
+    background-color: #02AFBC;
+    animation: progress-animation 5s linear forwards;
+}
+
+
+form {
+    background: linear-gradient(135deg, #e0f7fa, #ffffff);
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 450px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px ;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+}
+
+form input[type="date"],
+form select {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+}
+
+form input[type="date"]:focus,
+form select:focus {
+    border-color: #26c6da;
+    box-shadow: 0 0 8px rgba(38, 198, 218, 0.4);
+    outline: none;
+}
+
+form button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border: none;
+    background-color: #26c6da;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+form button:hover {
+    background-color: #00acc1;
+    transform: translateY(-2px);
+}
+
+form button:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 600px) {
+    form {
+        padding: 20px;
+    }
+
+    form input[type="date"],
+    form select {
+        font-size: 15px;
+    }
+
+    form button {
+        font-size: 16px;
+    }
+}
+
+@keyframes progress-animation {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}

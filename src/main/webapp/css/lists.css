@@ -1,54 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    background-color: #efefef;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+.p-4 {
+    font-size: 18px;
+}
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 600;
+    font-size: 2rem;
+    color: #FDDF35;
 }
 
 .table-latitude {
     width: 100%;
     border-collapse: collapse;
+    margin: 20px 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .table-latitude caption {
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #fab700;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.table-latitude thead {
-    border-top: 2px solid #fab700;
-    border-bottom: 2px solid #fab700;
-}
-
-.table-latitude thead th {
-    text-transform: uppercase;
-    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 500;
     padding: 10px;
+    color: #0077cc;
+    text-align: left;
+}
+
+.table-latitude thead tr {
+    background: #02AFBC;
     color: white;
-    background-color: rgb(115, 112, 112);
-    border: 2px solid #fab700;
+    text-align: left;
+}
+
+.table-latitude th,
+.table-latitude td {
+    padding: 15px;
+    font-size: 1rem;
 }
 
 .table-latitude tbody tr {
-    border-bottom: 1px solid #f1f1f1;
-    color: #75787b;
+    transition: background-color 0.3s;
 }
 
-.table-latitude tbody td,
-.table-latitude tbody th {
+.table-latitude tbody tr:nth-child(even) {
+    background-color: white ;
+}
+
+.table-latitude tbody tr:hover {
+    background-color: #e2e6ea;
+    cursor: pointer;
+}
+
+.ban-btn {
+    background-color:#FDDF35;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+.ban-btn:hover {
+    background-color:#02AFBC;
+    transform: scale(1.05);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 12px;
+    width: 70%;
+    max-width: 600px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-out;
+}
+
+.close-btn {
+    color: #aaa;
+    font-size: 24px;
+    font-weight: bold;
+    float: right;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-btn:hover {
+    color: #ff4757;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.input-container {
+    position: relative;
+    margin-top: 10px;
+}
+
+.custom-input {
+    width: 100%;
     padding: 10px;
-    border: 2px solid #fab700;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.2s;
 }
 
-.table-latitude tfoot {
-    color: #fab700;
-    font-style: italic;
-    border-bottom: 2px solid #fab700;
+.custom-input:focus {
+    border-color: #0077cc;
 }
 
-.table-latitude tfoot td {
-    padding: 10px;
-    border: 2px solid #fab700;
+.custom-label {
+    position: absolute;
+    top: -8px;
+    left: 10px;
+    background-color: white;
+    padding: 0 5px;
+    color: #777;
+    font-size: 0.85rem;
+}
+
+.button3 {
+    background-color: #FDDF35;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+
+
+.flex-end {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .modal {
@@ -164,19 +291,7 @@ option {
     font-weight: bold;
 }
 
-.button3 {
-    background-color: #00b5ad;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-}
 
-.button3:hover {
-    background-color: #008d85;
-}
 
 .flex-end {
     display: flex;
@@ -189,7 +304,3 @@ option {
     margin: 0;
 }
 
-.th-d, .ban-btn {
-    background-color: #00b3b0;
-    padding: 2px;
-}

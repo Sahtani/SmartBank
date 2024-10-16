@@ -13,6 +13,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -34,16 +35,6 @@ public class RequestServiceImpl implements RequestServiceI {
     public Request save(Request request) {
         validateRequest(request);
        return requestDao.save(request);
-
-    }
-
-    @Override
-    public void update(Request request) {
-
-    }
-
-    @Override
-    public void delete(Request request) {
 
     }
 
@@ -79,6 +70,11 @@ public class RequestServiceImpl implements RequestServiceI {
         BigDecimal mensualite = capital.multiply(tauxMensuel).divide(denominateur, 2, RoundingMode.HALF_UP);
 
         return mensualite.doubleValue();
+    }
+
+    @Override
+    public List<Request> findRequestsByDateAndStatus(LocalDate date, String status) {
+        return requestDao.findCreditsByDateAndStatus(date, status);
     }
 
 

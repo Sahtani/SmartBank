@@ -14,6 +14,7 @@ public class FirstServlet extends HttpServlet {
     @Inject
     private RequestServiceI requestService;
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -42,7 +43,7 @@ public class FirstServlet extends HttpServlet {
         response.sendRedirect("summary.jsp");
     }
 
-
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 

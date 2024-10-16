@@ -8,11 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 @WebServlet("/secondServlet")
 public class SecondServlet extends HttpServlet {
-
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         HttpSession session = request.getSession();
@@ -25,6 +24,7 @@ public class SecondServlet extends HttpServlet {
         response.sendRedirect("credit.jsp");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
 
@@ -32,7 +32,7 @@ public class SecondServlet extends HttpServlet {
         String phone = (String) session.getAttribute("phone");
 
         if (email == null || phone == null) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index1.jsp");
             return;
         }
         response.sendRedirect("credit.jsp");
