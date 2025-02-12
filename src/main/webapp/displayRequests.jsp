@@ -10,9 +10,7 @@
 </head>
 <body>
 
-<c:if test="${not empty sessionScope.Message}">
-    ${sessionScope.Message}
-</c:if>
+
 
 <div id="alertPopup" class="toast" style="display: none;">
     <div class="toast-content">
@@ -41,7 +39,7 @@
     <c:remove var="Message" scope="session"/>
 </c:if>
 <div class="container">
-    <form method="get" action="displayRequests">
+    <form method="get" class="form-update" action="displayRequests">
         <div>
             <input type="date" name="date" required value="${sessionScope.date != null ? sessionScope.date : ''}"/>
         </div>
@@ -96,7 +94,7 @@
                                     <button class="ban-btn button3" onclick="showModal(${request.id})">Détails</button>
                                 </td>
                                 <td>
-                                    <button class="ban-btn button3" onclick="showStatusModal(${request.id})">Modifier
+                                    <button class="ban-btn submit button3" onclick="showStatusModal(${request.id})">Modifier
                                         Statut
                                     </button>
                                 </td>

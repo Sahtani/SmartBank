@@ -78,7 +78,7 @@
 }
 
 
-form {
+.form-update {
     background: linear-gradient(135deg, #e0f7fa, #ffffff);
     border-radius: 12px;
     padding: 30px;
@@ -111,7 +111,7 @@ form select:focus {
     outline: none;
 }
 
-form button {
+.form-update button {
     width: 100%;
     padding: 15px;
     margin-top: 15px;
@@ -126,12 +126,12 @@ form button {
     transition: background-color 0.3s, transform 0.2s;
 }
 
-form button:hover {
+.form-update button:hover {
     background-color: #00acc1;
     transform: translateY(-2px);
 }
 
-form button:active {
+.form-update button:active {
     transform: translateY(0);
 }
 
